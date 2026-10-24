@@ -105,7 +105,7 @@ export const SimpleHome: React.FC<SimpleHomeProps> = ({
               </button>
 
               <a
-                href="/pray/index.html"
+                href="./pray/index.html"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-xs text-slate-500 hover:text-slate-900 dark:hover:text-white inline-flex items-center gap-1"
@@ -138,7 +138,7 @@ export const SimpleHome: React.FC<SimpleHomeProps> = ({
 
             <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
               <a
-                href="/Flooring/index.html"
+                href="./Flooring/index.html"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-600 dark:text-amber-400 hover:text-amber-500"
@@ -179,7 +179,7 @@ export const SimpleHome: React.FC<SimpleHomeProps> = ({
               </button>
 
               <a
-                href="/tools/suntracker.html"
+                href="./tools/suntracker.html"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-xs text-slate-500 hover:text-slate-900 dark:hover:text-white inline-flex items-center gap-1"

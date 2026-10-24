@@ -196,7 +196,7 @@ export const IslamicModal: React.FC<IslamicModalProps> = ({ isOpen, onClose }) =
 
           <div className="flex items-center gap-2">
             <a
-              href="/pray/index.html"
+              href="./pray/index.html"
               target="_blank"
               rel="noopener noreferrer"
               className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 rounded-lg transition-colors"

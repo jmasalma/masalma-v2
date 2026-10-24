@@ -26,7 +26,7 @@ export const AndroidAppsPage: React.FC<AndroidAppsPageProps> = ({ onBackToHome }
   const groupUrl = 'https://groups.google.com/g/masalma-app-testers';
   const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.masalma.athanalarm';
   const webTestingUrl = 'https://play.google.com/apps/testing/com.masalma.athanalarm';
-  const directApkUrl = '/Islam Adhan Alarm.apk';
+  const directApkUrl = './Islam Adhan Alarm.apk';
 
   const handleCopy = (text: string, id: string) => {
     navigator.clipboard.writeText(text);

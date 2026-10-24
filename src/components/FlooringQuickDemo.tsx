@@ -53,7 +53,7 @@ export const FlooringQuickDemo: React.FC<{ onLaunchFull: () => void }> = ({ onLa
         </div>
 
         <a
-          href="/Flooring/index.html"
+          href="./Flooring/index.html"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center justify-center gap-2 px-4 py-2.5 text-xs font-semibold text-white bg-amber-600 hover:bg-amber-500 rounded-xl transition-colors shadow-xs whitespace-nowrap self-start lg:self-auto cursor-pointer"
