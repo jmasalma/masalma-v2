@@ -1,0 +1,6 @@
+{
+  "name": "Masalma - Developer Hub",
+  "description": "Personal developer portfolio and interactive digital tools portal by JM, featuring Islamic prayer suites, flooring layout calculator, and precision web utilities.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
