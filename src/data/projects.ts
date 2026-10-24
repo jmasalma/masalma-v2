@@ -26,16 +26,16 @@ export const CATEGORIES = [
 export const PROJECTS: ProjectItem[] = [
   {
     id: 'prayer-suite',
-    title: 'Prayer Times & Islamic Suite',
+    title: 'Prayer Times & Ramadan Suite',
     category: 'islamic',
     categoryLabel: 'Islamic Suite',
-    type: 'React / TypeScript Application',
-    description: 'Precision prayer calculation engine featuring real-time daily prayer times, Qibla compass bearing, Quranic Verse of the Day, and the interactive 99 Names of Allah (Asmaul Husna).',
+    type: 'Interactive Prayer & Ramadan App',
+    description: 'Precision prayer calculation engine and real-time countdown to daily prayers, Ramadan Iftar, and Sahoor with Adhan audio notifications and Qibla compass direction.',
     highlights: [
-      'Aladhan API with automatic GPS geolocation',
-      'Interactive Qibla compass with Kaaba heading angle',
-      'Asmaul Husna grid with meanings and reflection modals',
-      'Daily curated Ayah with authentic translation'
+      'Live countdown to next prayer, Iftar, and Sahoor',
+      'Automatic GPS geolocation & coordinate query override',
+      'Custom calculation methods (ISNA, Umm Al-Qura, MWL, etc.)',
+      'Qibla heading direction, audio alerts & full-screen mode'
     ],
     url: './pray/index.html',
     previewUrl: './pray/index.html',
@@ -43,26 +43,6 @@ export const PROJECTS: ProjectItem[] = [
     status: 'Active',
     year: '2026',
     iconName: 'Compass'
-  },
-  {
-    id: 'ramadan-countdown',
-    title: 'Ramadan Countdown & Adhan',
-    category: 'islamic',
-    categoryLabel: 'Islamic Suite',
-    type: 'Interactive Countdown',
-    description: 'Real-time countdown to Ramadan and prayer intervals with Adhan audio alerts, localized astronomical calculations, and dynamic dawn/dusk tracking.',
-    highlights: [
-      'Astronomical Adhan calculation engine',
-      'Audio alert integration for prayer calls',
-      'Timezone-aware dynamic dusk/dawn calculations',
-      'Optimized for mobile & desktop screens'
-    ],
-    url: './pray/index.html',
-    previewUrl: './pray/index.html',
-    hasPreview: true,
-    status: 'Active',
-    year: '2026',
-    iconName: 'Moon'
   },
   {
     id: 'islam-adhan-apk',

@@ -110,7 +110,7 @@ export const SimpleHome: React.FC<SimpleHomeProps> = ({
                 rel="noopener noreferrer"
                 className="text-xs text-slate-500 hover:text-slate-900 dark:hover:text-white inline-flex items-center gap-1"
               >
-                <span>Ramadan App</span>
+                <span>Full Countdown App</span>
                 <ExternalLink className="w-3 h-3" />
               </a>
             </div>

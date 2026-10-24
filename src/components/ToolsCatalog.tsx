@@ -157,11 +157,9 @@ export const ToolsCatalog: React.FC<ToolsCatalogProps> = ({
                       {getIcon(project.iconName)}
                     </div>
 
-                    {/* Unboxed text metadata with dot separator (Strict Anti-Slop Rule) */}
+                    {/* Unboxed text metadata */}
                     <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 font-mono">
                       <span>{project.categoryLabel}</span>
-                      <span aria-hidden="true">·</span>
-                      <span>{project.year}</span>
                     </div>
                   </div>
 
