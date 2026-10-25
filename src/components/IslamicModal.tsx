@@ -8,7 +8,9 @@ import {
   MapPin,
   ExternalLink,
   ChevronRight,
-  Info
+  Info,
+  Navigation,
+  Loader2
 } from 'lucide-react';
 import { ASMA_UL_HUSNA, AsmaulHusna } from '../data/asmaulHusna';
 import {
@@ -35,6 +37,9 @@ interface QuranVerse {
 export const IslamicModal: React.FC<IslamicModalProps> = ({ isOpen, onClose }) => {
   const [activeTab, setActiveTab] = useState<'prayers' | 'qibla' | 'quran' | 'names'>('prayers');
   const [selectedCity, setSelectedCity] = useState(DEFAULT_CITIES[0]);
+  const [isUsingGps, setIsUsingGps] = useState(false);
+  const [gpsLoading, setGpsLoading] = useState(false);
+  const [gpsError, setGpsError] = useState<string | null>(null);
   const [timings, setTimings] = useState<Record<string, string>>(FALLBACK_TIMINGS);
   const [hijriDate, setHijriDate] = useState<string>('Islamic Calendar');
   const [nextPrayerInfo, setNextPrayerInfo] = useState({
@@ -42,6 +47,61 @@ export const IslamicModal: React.FC<IslamicModalProps> = ({ isOpen, onClose }) =
     nextPrayerTime: '16:02',
     secondsRemaining: 3600
   });
+
+  // Request browser location
+  const requestBrowserLocation = () => {
+    if (!navigator.geolocation) {
+      setGpsError('Geolocation is not supported by your browser.');
+      return;
+    }
+    setGpsLoading(true);
+    setGpsError(null);
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        setSelectedCity({
+          name: `Current Location (${lat.toFixed(2)}°, ${lon.toFixed(2)}°)`,
+          lat,
+          lon
+        });
+        setIsUsingGps(true);
+        setGpsLoading(false);
+      },
+      (error) => {
+        console.warn('Geolocation error:', error.message);
+        setGpsError('Could not retrieve browser location.');
+        setGpsLoading(false);
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 8000,
+        maximumAge: 300000
+      }
+    );
+  };
+
+  // Attempt browser geolocation once on initial open
+  useEffect(() => {
+    if (isOpen && !isUsingGps && navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+          setSelectedCity({
+            name: `Current Location (${lat.toFixed(2)}°, ${lon.toFixed(2)}°)`,
+            lat,
+            lon
+          });
+          setIsUsingGps(true);
+        },
+        () => {
+          // Quietly fallback to preset if denied or unavailable
+        },
+        { timeout: 4000, maximumAge: 300000 }
+      );
+    }
+  }, [isOpen]);
 
   // Verse of the day state
   const [verse, setVerse] = useState<QuranVerse | null>({
@@ -196,13 +256,14 @@ export const IslamicModal: React.FC<IslamicModalProps> = ({ isOpen, onClose }) =
 
           <div className="flex items-center gap-2">
             <a
-              href="./pray/index.html"
+              href={`./pray/index.html?latitude=${selectedCity.lat}&longitude=${selectedCity.lon}`}
               target="_blank"
               rel="noopener noreferrer"
+              title="Open standalone Prayer Web App (includes Ramadan Mode)"
               className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 rounded-lg transition-colors"
             >
               <ExternalLink className="w-3.5 h-3.5" />
-              <span>Full Ramadan App</span>
+              <span>Launch Prayer App</span>
             </a>
             <button
               onClick={onClose}
@@ -263,26 +324,50 @@ export const IslamicModal: React.FC<IslamicModalProps> = ({ isOpen, onClose }) =
           {/* TAB 1: PRAYER TIMINGS */}
           {activeTab === 'prayers' && (
             <div className="space-y-6">
-              {/* City selector row */}
+              {/* City selector row with Browser Geolocation */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 rounded-xl bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-800">
                 <div className="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-300">
                   <MapPin className="w-4 h-4 text-blue-600 dark:text-blue-400 shrink-0" />
-                  <span>Calculation Coordinates:</span>
+                  <span>Coordinates:</span>
                   <span className="font-semibold">{selectedCity.name}</span>
+                  {isUsingGps && (
+                    <span className="text-[10px] font-mono text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800/60 px-1.5 py-0.5 rounded">
+                      Browser GPS
+                    </span>
+                  )}
                 </div>
-                <div className="flex items-center gap-2">
-                  <label htmlFor="modal-city-select" className="text-xs text-slate-500">
-                    City Preset:
-                  </label>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <button
+                    onClick={requestBrowserLocation}
+                    disabled={gpsLoading}
+                    className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium rounded-lg border transition-colors cursor-pointer ${
+                      isUsingGps
+                        ? 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-300 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300'
+                        : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700'
+                    }`}
+                    title="Detect exact coordinates via browser GPS"
+                  >
+                    {gpsLoading ? (
+                      <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                    ) : (
+                      <Navigation className="w-3.5 h-3.5 text-blue-500" />
+                    )}
+                    <span>{gpsLoading ? 'Locating...' : 'Use My Location'}</span>
+                  </button>
+
                   <select
                     id="modal-city-select"
-                    value={selectedCity.name}
+                    value={isUsingGps ? '' : selectedCity.name}
                     onChange={(e) => {
                       const c = DEFAULT_CITIES.find((item) => item.name === e.target.value);
-                      if (c) setSelectedCity(c);
+                      if (c) {
+                        setSelectedCity(c);
+                        setIsUsingGps(false);
+                      }
                     }}
                     className="text-xs bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-md px-2.5 py-1.5 text-slate-700 dark:text-slate-200 focus:outline-none focus-visible:ring-1 focus-visible:ring-blue-500 cursor-pointer"
                   >
+                    {isUsingGps && <option value="">Custom (Browser GPS)</option>}
                     {DEFAULT_CITIES.map((c) => (
                       <option key={c.name} value={c.name}>
                         {c.name}
@@ -291,6 +376,11 @@ export const IslamicModal: React.FC<IslamicModalProps> = ({ isOpen, onClose }) =
                   </select>
                 </div>
               </div>
+              {gpsError && (
+                <div className="text-xs text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 p-2.5 rounded-lg border border-amber-200 dark:border-amber-900/60">
+                  {gpsError}
+                </div>
+              )}
 
               {/* Countdown Banner */}
               <div className="p-5 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">

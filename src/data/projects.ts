@@ -26,13 +26,13 @@ export const CATEGORIES = [
 export const PROJECTS: ProjectItem[] = [
   {
     id: 'prayer-suite',
-    title: 'Prayer Times & Ramadan Suite',
+    title: 'Prayer Times Suite',
     category: 'islamic',
     categoryLabel: 'Islamic Suite',
     type: 'Interactive Prayer & Ramadan App',
-    description: 'Precision prayer calculation engine and real-time countdown to daily prayers, Ramadan Iftar, and Sahoor with Adhan audio notifications and Qibla compass direction.',
+    description: 'Precision prayer calculation engine featuring real-time daily prayer times, Qibla compass bearing, Adhan audio notifications, and Ramadan fasting countdown mode (Iftar & Sahoor).',
     highlights: [
-      'Live countdown to next prayer, Iftar, and Sahoor',
+      'Live countdown to upcoming prayer, Iftar, and Sahoor',
       'Automatic GPS geolocation & coordinate query override',
       'Custom calculation methods (ISNA, Umm Al-Qura, MWL, etc.)',
       'Qibla heading direction, audio alerts & full-screen mode'
@@ -45,23 +45,23 @@ export const PROJECTS: ProjectItem[] = [
     iconName: 'Compass'
   },
   {
-    id: 'islam-adhan-apk',
-    title: 'Islam Adhan Alarm APK',
+    id: 'athan-alarm-android',
+    title: 'Athan Alarm for Android',
     category: 'islamic',
     categoryLabel: 'Islamic Suite',
     type: 'Android Native Application',
-    description: 'Standalone Android package (.apk) for reliable, offline-ready Adhan prayer alarms and reminders directly on mobile devices without store telemetry.',
+    description: 'Modern, privacy-first prayer alarm application for Android (AthanAlarm2). Currently in closed beta testing on Google Play with open-source development on GitHub.',
     highlights: [
-      'Direct APK package download',
-      'Zero invasive tracking or ads',
-      'Background alarm scheduler for Android',
-      'Reliable prayer audio notifications'
+      'Google Play Closed Testing program access',
+      'Open-source repository at github.com/jmasalma/AthanAlarm2',
+      'Reliable background prayer alarm scheduler',
+      'Zero invasive tracking, analytics, or ads'
     ],
-    url: './Islam Adhan Alarm.apk',
-    isDownload: true,
+    url: 'https://github.com/jmasalma/AthanAlarm2',
+    isExternal: true,
     hasPreview: false,
-    status: 'Distribution',
-    year: '2025',
+    status: 'Closed Beta',
+    year: '2026',
     iconName: 'Smartphone'
   },
   {

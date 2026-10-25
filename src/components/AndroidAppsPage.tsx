@@ -26,7 +26,7 @@ export const AndroidAppsPage: React.FC<AndroidAppsPageProps> = ({ onBackToHome }
   const groupUrl = 'https://groups.google.com/g/masalma-app-testers';
   const playStoreUrl = 'https://play.google.com/store/apps/details?id=com.masalma.athanalarm';
   const webTestingUrl = 'https://play.google.com/apps/testing/com.masalma.athanalarm';
-  const directApkUrl = './Islam Adhan Alarm.apk';
+  const githubRepoUrl = 'https://github.com/jmasalma/AthanAlarm2';
 
   const handleCopy = (text: string, id: string) => {
     navigator.clipboard.writeText(text);
@@ -84,12 +84,13 @@ export const AndroidAppsPage: React.FC<AndroidAppsPageProps> = ({ onBackToHome }
             </div>
 
             <a
-              href={directApkUrl}
-              download
+              href={githubRepoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 px-4 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl transition-colors whitespace-nowrap self-start sm:self-auto"
             >
-              <Download className="w-4 h-4" />
-              <span>Direct APK Download</span>
+              <ExternalLink className="w-4 h-4" />
+              <span>AthanAlarm2 on GitHub</span>
             </a>
           </div>
 

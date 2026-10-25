@@ -60,7 +60,7 @@ export const SimpleHome: React.FC<SimpleHomeProps> = ({
                 Android Applications
               </h2>
               <p className="text-sm text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
-                <strong>Athan Alarm</strong> is currently in closed test mode on Google Play. Join our testers Google Group to get testing access or download the direct APK.
+                <strong>Athan Alarm</strong> is currently in closed test mode on Google Play. Join our testers Google Group to get testing access.
               </p>
             </div>
 
@@ -91,7 +91,7 @@ export const SimpleHome: React.FC<SimpleHomeProps> = ({
                 Islamic Prayer Suite
               </h2>
               <p className="text-sm text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
-                Accurate prayer calculation times, Qibla compass bearing, Ramadan countdown timer with Adhan audio, and the 99 Names of Allah.
+                Accurate prayer calculation times, Qibla compass bearing, daily prayer countdown with Adhan audio, Ramadan fasting mode, and the 99 Names of Allah.
               </p>
             </div>
 
@@ -110,7 +110,7 @@ export const SimpleHome: React.FC<SimpleHomeProps> = ({
                 rel="noopener noreferrer"
                 className="text-xs text-slate-500 hover:text-slate-900 dark:hover:text-white inline-flex items-center gap-1"
               >
-                <span>Full Countdown App</span>
+                <span>Prayer Web App</span>
                 <ExternalLink className="w-3 h-3" />
               </a>
             </div>

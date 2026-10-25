@@ -204,7 +204,26 @@ export const ToolsCatalog: React.FC<ToolsCatalogProps> = ({
                     </button>
                   ) : null}
 
-                  {project.isDownload ? (
+                  {project.id === 'athan-alarm-android' ? (
+                    <div className="flex-1 flex items-center gap-2">
+                      <a
+                        href="#android"
+                        className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 hover:bg-emerald-100 dark:hover:bg-emerald-900/60 border border-emerald-200 dark:border-emerald-800/60 rounded-lg transition-colors text-center"
+                      >
+                        <Smartphone className="w-3.5 h-3.5" />
+                        <span>Beta Testers</span>
+                      </a>
+                      <a
+                        href={project.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title="View AthanAlarm2 on GitHub"
+                        className="flex items-center justify-center p-2 text-xs font-semibold text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition-colors border border-slate-200 dark:border-slate-700"
+                      >
+                        <ExternalLink className="w-3.5 h-3.5" />
+                      </a>
+                    </div>
+                  ) : project.isDownload ? (
                     <div className="flex-1 flex items-center gap-2">
                       <a
                         href="#android"
@@ -216,7 +235,7 @@ export const ToolsCatalog: React.FC<ToolsCatalogProps> = ({
                       <a
                         href={project.url}
                         download
-                        title="Direct APK Download"
+                        title="Download App"
                         className="flex items-center justify-center p-2 text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-500 rounded-lg transition-colors"
                       >
                         <Download className="w-3.5 h-3.5" />
